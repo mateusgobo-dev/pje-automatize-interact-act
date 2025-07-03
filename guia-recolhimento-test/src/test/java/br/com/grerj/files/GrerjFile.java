@@ -34,4 +34,9 @@ public class GrerjFile {
             Logger.getLogger(GrerjAutomatizadoTest.class.getSimpleName(), ex.getMessage());
         }
     }
+
+    @Test
+    public void count() {
+
+    }
 }

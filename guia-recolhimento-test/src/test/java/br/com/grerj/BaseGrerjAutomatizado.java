@@ -14,7 +14,7 @@ public class BaseGrerjAutomatizado {
     protected static final Path mainPath = Paths.get(System.getProperty("user.dir"));
     public static Supplier<Void> threadSleep = () -> {
         try {
-            Thread.sleep(Duration.ofMillis(1200));
+            Thread.sleep(Duration.ofMillis(1500));
         } catch (InterruptedException ex) {
             Logger.getLogger(GrerjAutomatizadoTest.class.getSimpleName()).severe("Erro no timeout %s".formatted(ex.getMessage()));
         }

@@ -22,14 +22,14 @@ public interface WebDriverFindElements {
         } else {
             webElement = switch (elementBy) {
                 case CLASS_NAME -> webDriver.findElement(By.className(element));
-                case ID -> webDriver.findElement(By.id(element));
+                case ID, TEXTFIELD -> webDriver.findElement(By.id(element));
                 case XPATH -> webDriver.findElement(By.xpath(element));
                 case CSS_SELETOR -> webDriver.findElement(By.cssSelector(element));
-                case  TEXTFIELD -> webDriver.findElement(By.id(element));
                 default -> throw new IllegalStateException("Unexpected value: " + elementBy);
             };
             if (( value ) instanceof Boolean) {
-                webElement.click();
+                Boolean click = (Boolean) value;
+                if(click)webElement.click();
             }else{
                 webElement.sendKeys((String) value);
             }

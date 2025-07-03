@@ -11,10 +11,19 @@ import java.util.logging.Logger;
 
 public class BaseGrerjAutomatizado {
     protected WebDriver webDriver;
-    protected Path mainPath = Paths.get(System.getProperty("user.dir"));
+    protected static final Path mainPath = Paths.get(System.getProperty("user.dir"));
     public static Supplier<Void> threadSleep = () -> {
         try {
             Thread.sleep(Duration.ofMillis(1200));
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GrerjAutomatizadoTest.class.getSimpleName()).severe("Erro no timeout %s".formatted(ex.getMessage()));
+        }
+        return null;
+    };
+
+    public static Supplier<Void> threadSleepTransition = () -> {
+        try {
+            Thread.sleep(Duration.ofMillis(3000));
         } catch (InterruptedException ex) {
             Logger.getLogger(GrerjAutomatizadoTest.class.getSimpleName()).severe("Erro no timeout %s".formatted(ex.getMessage()));
         }

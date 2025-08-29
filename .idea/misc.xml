@@ -8,6 +8,9 @@
         <option value="$PROJECT_DIR$/peticao-intercorrente-test/pom.xml" />
         <option value="$PROJECT_DIR$/selenium-test/pom.xml" />
         <option value="$PROJECT_DIR$/guia-recolhimento-test/pom.xml" />
+        <option value="$PROJECT_DIR$/carta-precatoria-remessa/pom.xml" />
+        <option value="$PROJECT_DIR$/carta-precatoria-declinio-remessa/pom.xml" />
+        <option value="$PROJECT_DIR$/extract-api-paths/pom.xml" />
       </list>
     </option>
   </component>

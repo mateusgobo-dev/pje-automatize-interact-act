@@ -3,6 +3,10 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/carta-precatoria-de-ordem-test/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/carta-precatoria-de-ordem-test/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/carta-precatoria-declinio-remessa/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/carta-precatoria-declinio-remessa/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/extract-api-paths/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/extract-api-paths/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/guia-recolhimento-test/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/guia-recolhimento-test/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/peticao-intercorrente-test/src/main/java" charset="UTF-8" />

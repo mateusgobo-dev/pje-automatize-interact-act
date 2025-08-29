@@ -1,0 +1,18 @@
+package br.com.infox.pattern.strategy.ProcessoDistribuido;
+
+import br.com.infox.pje.bean.EstatisticaProcessoDistribuidoAnaliticoAssuntoBean;
+import br.jus.pje.nucleo.entidades.ProcessoTrf;
+
+public class ProcessoDistribuidoAnaliticoAssuntoRedistribuidos implements ProcessoDistribuidoAnaliticoAssuntoStrategy {
+	EstatisticaProcessoDistribuidoAnaliticoAssuntoBean estatisticaProcessoDistribuidoAnaliticoAssuntoBean = new EstatisticaProcessoDistribuidoAnaliticoAssuntoBean();
+	
+	public ProcessoDistribuidoAnaliticoAssuntoRedistribuidos(EstatisticaProcessoDistribuidoAnaliticoAssuntoBean estatisticaProcessoDistribuidoAnaliticoAssuntoBean) {
+		this.estatisticaProcessoDistribuidoAnaliticoAssuntoBean = estatisticaProcessoDistribuidoAnaliticoAssuntoBean;
+	}
+	
+	@Override
+	public EstatisticaProcessoDistribuidoAnaliticoAssuntoBean adicionaProcesso(ProcessoTrf ptrf){
+		estatisticaProcessoDistribuidoAnaliticoAssuntoBean.getListaBaixasDefinitiva().add(ptrf);
+		return estatisticaProcessoDistribuidoAnaliticoAssuntoBean;
+	}
+}

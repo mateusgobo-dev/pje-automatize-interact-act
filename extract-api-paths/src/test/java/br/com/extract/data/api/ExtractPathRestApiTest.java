@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -50,16 +49,23 @@ public class ExtractPathRestApiTest {
             }
         });
         StringBuilder lines = new StringBuilder();
+        StringBuilder contracts = new StringBuilder();
         valuesOf.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(values -> {
             lines.append(values.getKey());
             lines.append(System.lineSeparator());
             values.getValue().stream().filter(line -> !line.isEmpty()).forEach(line -> lines.append(line));
             lines.append(System.lineSeparator());
+
+            contracts.append(values.getKey());
+            contracts.append(System.lineSeparator());
         });
         File result = new File(pathFilesResult.toFile()+File.separator+"pje_services.txt");
+        File resultContracts = new File(pathFilesResult.toFile()+File.separator+"pje_services_contracts.txt");
         if(result.exists()){Files.delete(Paths.get(result.toURI()));}
-        try(FileWriter fileWriter = new FileWriter(result)) {
-            fileWriter.write(lines.toString());
+        try(FileWriter fileWriterResult = new FileWriter(result);
+              FileWriter fileWriterContracts = new FileWriter(resultContracts)) {
+            fileWriterResult.write(lines.toString());
+            fileWriterContracts.write(contracts.toString());
         }catch(IOException ex){
             Logger.getLogger(ExtractPathRestApiTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -92,18 +98,31 @@ public class ExtractPathRestApiTest {
             }
         });
         StringBuilder lines = new StringBuilder();
+        StringBuilder contracts = new StringBuilder();
+        valuesOf.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(values -> {
+            lines.append(values.getKey());
+            lines.append(System.lineSeparator());
+            values.getValue().stream().filter(line -> !line.isEmpty()).forEach(line -> lines.append(line));
+            lines.append(System.lineSeparator());
+
+            contracts.append(values.getKey());
+            contracts.append(System.lineSeparator());
+        });
+        File result = new File(pathFilesResult.toFile()+File.separator+"pje_services_all_files.txt");
+        File resultContracts = new File(pathFilesResult.toFile()+File.separator+"pje_services_all_contracts.txt");
+        if(result.exists()){Files.delete(Paths.get(result.toURI()));}
+        try(FileWriter fileWriterResult = new FileWriter(result);
+            FileWriter fileWriterContracts = new FileWriter(resultContracts)) {
+            fileWriterResult.write(lines.toString());
+            fileWriterContracts.write(contracts.toString());
+        }catch(IOException ex){
+            Logger.getLogger(ExtractPathRestApiTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         valuesOf.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(values -> {
             lines.append(values.getKey());
             lines.append(System.lineSeparator());
             values.getValue().stream().filter(line -> !line.isEmpty()).forEach(line -> lines.append(line));
             lines.append(System.lineSeparator());
         });
-        File result = new File(pathFilesResult.toFile()+File.separator+"pje_services_all_files.txt");
-        if(result.exists()){Files.delete(Paths.get(result.toURI()));}
-        try(FileWriter fileWriter = new FileWriter(result)) {
-            fileWriter.write(lines.toString());
-        }catch(IOException ex){
-            Logger.getLogger(ExtractPathRestApiTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }

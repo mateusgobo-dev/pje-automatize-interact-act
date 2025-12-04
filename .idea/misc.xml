@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/carta-precatoria-remessa/pom.xml" />
         <option value="$PROJECT_DIR$/carta-precatoria-declinio-remessa/pom.xml" />
         <option value="$PROJECT_DIR$/extract-api-paths/pom.xml" />
+        <option value="$PROJECT_DIR$/../validacaoProcessosOficio/pom.xml" />
       </list>
     </option>
   </component>

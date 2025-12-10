@@ -7,12 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="carta-precatoria-de-ordem-test" />
         <module name="peticao-intercorrente-test" />
         <module name="selenium-test" />
-        <module name="carta-precatoria-declinio-remessa" />
         <module name="guia-recolhimento-test" />
         <module name="extract-api-paths" />
+        <module name="carta-precatoria-de-ordem-test" />
+        <module name="validacaoProcessosOficio" />
+        <module name="carta-precatoria-declinio-remessa" />
       </profile>
     </annotationProcessing>
   </component>

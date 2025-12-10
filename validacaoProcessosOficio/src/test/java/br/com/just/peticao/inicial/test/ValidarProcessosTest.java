@@ -77,12 +77,33 @@ public class ValidarProcessosTest extends BaseIntegrationTest {
     @Test
     public void protocolarPeticaoInicial() throws InterruptedException {
         driver.get(url.get());
-        sleep.actionComponent(driver, "//input[@id='username']", "324.547.258-78");
-        sleep.actionComponent(driver, "//input[@id='password']", "Megatirador65#");
+        sleep.actionComponent(driver, "//input[@id='username']",  false,"324.547.258-78");
+        sleep.actionComponent(driver, "//input[@id='password']", false,"Megatirador65#");
         click.apply(driver, "//input[@id='kc-login']");
+
+        definirProcessosPeticaoIntercorrentes();
     }
 
+    private void definirProcessosPeticaoIntercorrentes() throws InterruptedException {
+        threadSleep_2000_ms.get();
+        pularButtonAction.apply(driver);
 
+        threadSleep_2000_ms.get();
+        click.apply(driver, "//mat-icon[normalize-space()='menu']");
+
+        threadSleep_2000_ms.get();
+        click.apply(driver, "(//span[@class='mat-list-item-content'])[6]");
+
+        threadSleep_2000_ms.get();
+        pularButtonAction.apply(driver);
+
+        sleep.actionComponent(driver, "mat-input-1",  true,"0800102-27.2019.8.19.0031");
+        click.apply(driver, "//button[@class='mat-focus-indicator ml-3 mat-raised-button mat-button-base mat-primary']");
+        threadSleep_ms.apply(10000);
+
+        click.apply(driver, "//button[@id='botao-acao']");
+        threadSleep_ms.apply(10000);
+    }
 
     @Test
     public void validarNroProcessos() throws IOException, InterruptedException, NoSuchAlgorithmException, KeyManagementException {

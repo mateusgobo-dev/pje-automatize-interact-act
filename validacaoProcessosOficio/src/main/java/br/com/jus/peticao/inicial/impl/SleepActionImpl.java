@@ -3,6 +3,7 @@ package br.com.jus.peticao.inicial.impl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -50,5 +51,18 @@ public interface SleepActionImpl {
         WebElement webElement = driver.findElement(By.xpath(reference));
         webElement.click();
         return null;
+    };
+
+    BiFunction<WebDriver, String, Void> clickSleep2s = (driver, reference) -> {
+        WebElement webElement = driver.findElement(By.xpath(reference));
+        webElement.click();
+        threadSleep_2000_ms.get();
+        return null;
+    };
+
+    BiFunction<WebDriver, String, Select> selectSleep2s = (driver, reference) -> {
+        Select select = new Select(driver.findElement(By.xpath(reference)));
+        threadSleep_2000_ms.get();
+        return select;
     };
 }

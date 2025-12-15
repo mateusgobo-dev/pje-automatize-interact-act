@@ -1,17 +1,20 @@
 package br.com.just.peticao.inicial.test;
 
+import br.com.just.peticao.inicial.test.factory.Peticao;
 import br.com.pje.model.TokenPattern;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.net.ssl.SSLContext;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -23,8 +26,12 @@ import java.net.http.HttpResponse;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import static br.com.jus.peticao.inicial.impl.DeserializeToObject.apply;
 import static br.com.jus.peticao.inicial.impl.PeticaoSupplier.url;
@@ -49,7 +56,7 @@ public class ValidarProcessosTest extends BaseIntegrationTest {
     }
 
     private void lerProcessos() {
-        File file = path.toFile();
+        File file = pathProcessosSubmetidos.toFile();
         if (file.exists()) {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 br.lines().forEach(line -> System.out.println(line));
@@ -75,11 +82,22 @@ public class ValidarProcessosTest extends BaseIntegrationTest {
     }
 
     @Test
+    public void testarCollection() {
+        Peticao peticao1 = Peticao.instanceOf(1l, "Teste 1");
+        Peticao peticao2 = Peticao.instanceOf(2l, "Teste 2");
+
+        Collection<Peticao> peticaoCollection = Arrays.asList(peticao1, peticao2);
+        final List<Long> peticoesIds = peticaoCollection.stream().map(Peticao::getId).collect(Collectors.toList());
+        peticoesIds.forEach(System.out::println);
+    }
+
+
+    @Test
     public void protocolarPeticaoInicial() throws InterruptedException, AWTException {
         driver.get(url.get());
         sleep.actionComponent(driver, "//input[@id='username']", false, "324.547.258-78");
         sleep.actionComponent(driver, "//input[@id='password']", false, "Megatirador65#");
-        click.apply(driver, "//input[@id='kc-login']");
+        clickSleep2s.apply(driver, "//input[@id='kc-login']");
 
         definirProcessosPeticaoIntercorrentes();
         selecionarArquivosPeticao();
@@ -89,42 +107,42 @@ public class ValidarProcessosTest extends BaseIntegrationTest {
         threadSleep_2000_ms.get();
         pularButtonAction.apply(driver);
 
-        threadSleep_2000_ms.get();
-        click.apply(driver, "//mat-icon[normalize-space()='menu']");
-
-        threadSleep_2000_ms.get();
-        click.apply(driver, "(//span[@class='mat-list-item-content'])[6]");
-
-        threadSleep_2000_ms.get();
+        clickSleep2s.apply(driver, "//mat-icon[normalize-space()='menu']");
+        clickSleep2s.apply(driver, "(//span[@class='mat-list-item-content'])[6]");
         pularButtonAction.apply(driver);
 
         sleep.actionComponent(driver, "mat-input-1", true, "0800102-27.2019.8.19.0031");
-        click.apply(driver, "//button[@class='mat-focus-indicator ml-3 mat-raised-button mat-button-base mat-primary']");
-        threadSleep_ms.apply(10000);
+        clickSleep2s.apply(driver, "//button[@class='mat-focus-indicator ml-3 mat-raised-button mat-button-base mat-primary']");
+        threadSleep_ms.apply(3000);
 
-        click.apply(driver, "//button[@id='botao-acao']");
-        threadSleep_ms.apply(10000);
+        clickSleep2s.apply(driver, "//button[@id='botao-acao']");
+        alternarAbas();
+        threadSleep_ms.apply(5000);
     }
 
-    private void selecionarArquivosPeticao() throws AWTException {
-        click.apply(driver, "(//button[@type='button'])[2]");
+    private void selecionarArquivosPeticao() throws AWTException, InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String currentUrl = (String) js.executeScript("return window.location.href;");
+        System.out.println(currentUrl);
 
-        // File path to upload
-        String filePath = "C:\\Users\\mateu.gobo\\JUS-BR\\PETICOES\\PETICAO_INICIAL_A.pdf";
+        clickSleep2s.apply(driver, "(//button[@type='button'])[2]");
+        this.subirArquivoPeticao(myFile.apply("_A.pdf"));
+        threadSleep_2000_ms.get();
+        clickSleep2s.apply(driver,"//div[@class='mat-form-field-infix ng-tns-c39-7']");
+        WebElement webElement = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='mat-option-text'][normalize-space()='Petição (57)']")));
+        webElement.click();
+        clickSleep2s.apply(driver, "(//mat-icon[@role='img'][normalize-space()='close'])[1]");
+        sleep.actionComponent(driver, "mat-input-1", true, "PeticaoInicialAutomatizado%s".formatted(peticaoIndex.getAndSet(peticaoIndex.get() + 1)));
 
-        // Copy to clipboard
-        StringSelection s = new StringSelection(filePath);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(s, null);
+        clickSleep2s.apply(driver, "(//button[@type='button'])[3]");
+        this.subirArquivoPeticao(myFile.apply("protocolo"));
+        clickSleep2s.apply(driver,"//div[@class='mat-form-field-infix ng-tns-c39-10']");
+        sleep.actionComponent(driver, "mat-select-value-5", true).click();
+        clickSleep2s.apply(driver, "//button[@class='mat-focus-indicator mat-icon-button mat-button-base ng-tns-c39-9 ng-star-inserted']//mat-icon[@role='img'][normalize-space()='close']");
+        sleep.actionComponent(driver, "//input[@id='mat-input-1']", false, "OutrosDocumentos-PeticaoInicialAutomatizado%s".formatted(peticaoIndex.get()));
 
-        // Paste and press Enter
-        Robot robot = new Robot();
-        robot.delay(1000);
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
+        clickSleep2s.apply(driver, "//label[@for='formly_3_radio_semGreRjAssociada_0_1-input']//span[@class='mat-radio-outer-circle']");
+        threadSleep_ms.apply(10000);
     }
 
     @Test

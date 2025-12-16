@@ -20,6 +20,7 @@ public interface SleepActionImpl {
             throw new RuntimeException(e);
         }
     };
+
     Function<Integer,Void> threadSleep_ms = (timeout) -> {
         try {
             Thread.sleep(timeout);
@@ -53,10 +54,10 @@ public interface SleepActionImpl {
         return null;
     };
 
-    BiFunction<WebDriver, String, Void> clickSleep2s = (driver, reference) -> {
+    BiFunction<WebDriver, String, Void> clickSleep3s = (driver, reference) -> {
         WebElement webElement = driver.findElement(By.xpath(reference));
         webElement.click();
-        threadSleep_2000_ms.get();
+        threadSleep_ms.apply(3000);
         return null;
     };
 

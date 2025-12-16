@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,7 +25,7 @@ public class BaseIntegrationTest {
     protected Map<String, Object> vars;
     protected JavascriptExecutor js;
     protected Path pathProcessosSubmetidos = Path.of(System.getProperty("user.dir")).resolve(Paths.get("src", "test", "resources", "processos_submetidos"));
-    protected Path pathDocumentos                 = Path.of(System.getProperty("user.dir")).resolve(Paths.get("src", "test", "resources", "documentos" ));
+    protected Path pathDocumentos = Path.of(System.getProperty("user.dir")).resolve(Paths.get("src", "test", "resources", "documentos" ));
 
     protected final AtomicReference<Integer> peticaoIndex = new AtomicReference<>(0);
 
@@ -40,10 +41,10 @@ public class BaseIntegrationTest {
         return resultado;
     }
 
-    protected Function<String, String> myFile = (prefix) -> {
+    protected Function<String, File> myFile = (prefix) -> {
         try {
              Optional<Path> filePdf = Files.list(pathDocumentos).filter(file -> file.getFileName().toString().contains(prefix)).findFirst();
-             if(!filePdf.isEmpty()) return filePdf.get().toAbsolutePath().toString();
+             if(!filePdf.isEmpty()) return filePdf.get().toFile();
              return null;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -68,9 +69,9 @@ public class BaseIntegrationTest {
         System.out.println("New tab URL = " + newUrl + ", original = " + currentTab);
     }
 
-    protected void subirArquivoPeticao(String filePath) throws AWTException {
+    protected void subirArquivoPeticao(File file) throws AWTException {
         // Copy path to clipboard
-        StringSelection selection = new StringSelection(filePath);
+        StringSelection selection = new StringSelection(file.getAbsolutePath());
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
 
         // Robot actions

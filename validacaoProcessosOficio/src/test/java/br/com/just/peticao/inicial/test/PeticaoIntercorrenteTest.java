@@ -37,7 +37,7 @@ import static br.com.jus.peticao.inicial.impl.PeticaoSupplier.url;
 import static br.com.jus.peticao.inicial.impl.SSLContextToRequest.instanceOf;
 import static br.com.jus.peticao.inicial.impl.SleepActionImpl.*;
 
-public class ValidarProcessosTest extends BaseIntegrationTest {
+public class PeticaoIntercorrenteTest extends BaseIntegrationTest {
 
     @BeforeEach
     public void setUp() {
@@ -64,7 +64,7 @@ public class ValidarProcessosTest extends BaseIntegrationTest {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 br.lines().forEach(line -> System.out.println(line));
             } catch (IOException e) {
-                Logger.getLogger(ValidarProcessosTest.class.getSimpleName()).severe("Erro na leitura do arquivo de processos");
+                Logger.getLogger(PeticaoIntercorrenteTest.class.getSimpleName()).severe("Erro na leitura do arquivo de processos");
             }
         }
     }
@@ -102,6 +102,7 @@ public class ValidarProcessosTest extends BaseIntegrationTest {
 
         definirProcessosPeticaoIntercorrentes();
         selecionarArquivosPeticao();
+        submeterPeticao();
     }
 
     private void definirProcessosPeticaoIntercorrentes() throws InterruptedException {
@@ -127,8 +128,8 @@ public class ValidarProcessosTest extends BaseIntegrationTest {
         String currentUrl = (String) js.executeScript("return window.location.href;");
         System.out.println(currentUrl);
 
-        clickSleep3s.apply(driver, "(//button[@type='button'])[2]");
-        this.subirArquivoPeticao(myFile.apply("_A.pdf"));
+        WebElement fileInputPdfA = sleep.actionComponent(driver,"//input[@accept='application/pdf']", false);
+        fileInputPdfA.sendKeys(myFile.apply("_A.pdf").getAbsolutePath());
         threadSleep_2000_ms.get();
         sleep.actionComponent(driver, "mat-select-value-3", true).click();
         WebElement optionPeticao = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='mat-option-text'][normalize-space()='Petição (57)']")));
@@ -136,22 +137,24 @@ public class ValidarProcessosTest extends BaseIntegrationTest {
         clickSleep3s.apply(driver, "//mat-icon[@class='mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color']");
         sleep.actionComponent(driver, "mat-input-1", true, "PeticaoInicialAutomatizado%s".formatted(peticaoIndex.getAndSet(peticaoIndex.get() + 1)));
 
-        clickSleep3s.apply(driver, "//button[@class='mat-focus-indicator upload-button mat-raised-button mat-button-base mat-primary']");
-        this.subirArquivoPeticao(myFile.apply("protocolo"));
+        WebElement fileInputAnexo = sleep.actionComponent(driver,"//input[@type='file' and @multiple]", false);
+        fileInputAnexo.sendKeys(myFile.apply("protocolo").getAbsolutePath());
         threadSleep_2000_ms.get();
         sleep.actionComponent(driver,"mat-select-value-5",true).click();
         WebElement optionOutrosDocumentos = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Outros documentos (80)']")));
         optionOutrosDocumentos.click();
         clickSleep3s.apply(driver, "(//mat-icon[@role='img'][normalize-space()='close'])[2]");
         sleep.actionComponent(driver, "mat-input-2", true, "OutrosDocumentos-PeticaoInicialAutomatizado%s".formatted(peticaoIndex.get()));
+    }
 
+    private void submeterPeticao() throws InterruptedException {
         clickSleep3s.apply(driver, "//label[@for='formly_3_radio_semGreRjAssociada_0_1-input']//span[@class='mat-radio-outer-circle']");
         clickSleep3s.apply(driver, "(//span[normalize-space()='Salvar Rascunho'])[1]");
         clickSleep3s.apply(driver, "(//span[normalize-space()='Fechar'])[1]");
         clickSleep3s.apply(driver, "(//span[normalize-space()='Protocolar'])[1]");
         clickSleep3s.apply(driver, "(//span[normalize-space()='Sim'])[1]");
         clickSleep3s.apply(driver, "(//span[normalize-space()='Ir para minhas petições'])[1]");
-        threadSleep_ms.apply(10000);
+        threadSleep_ms.apply(5000);
     }
 
     @Test

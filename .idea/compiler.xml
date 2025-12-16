@@ -12,8 +12,8 @@
         <module name="guia-recolhimento-test" />
         <module name="extract-api-paths" />
         <module name="carta-precatoria-de-ordem-test" />
-        <module name="validacaoProcessosOficio" />
         <module name="carta-precatoria-declinio-remessa" />
+        <module name="peticao-test" />
       </profile>
     </annotationProcessing>
   </component>

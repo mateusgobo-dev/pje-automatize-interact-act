@@ -2,13 +2,11 @@ package br.com.jus.peticao.inicial.test;
 
 import br.com.jus.peticao.inicial.test.factory.Peticao;
 import br.com.pje.model.TokenPattern;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -27,13 +25,11 @@ import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static br.com.jus.peticao.inicial.impl.DeserializeToObject.apply;
-import static br.com.jus.peticao.inicial.impl.PeticaoSupplier.url;
 import static br.com.jus.peticao.inicial.impl.SSLContextToRequest.instanceOf;
 import static br.com.jus.peticao.inicial.impl.SleepActionImpl.*;
 
@@ -41,21 +37,7 @@ public class PeticaoIntercorrenteTest extends BaseIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-//        FirefoxOptions firefoxOptions = new FirefoxOptions();
-//        firefoxOptions.addArguments("--headless=false");
-
-        driver = new ChromeDriver();
-//        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        js = (JavascriptExecutor) driver;
-        vars = new HashMap<>();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-    }
-
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
+        this.configurarChromeDriver();
     }
 
     private void lerProcessos() {
@@ -92,14 +74,9 @@ public class PeticaoIntercorrenteTest extends BaseIntegrationTest {
         peticoesIds.forEach(System.out::println);
     }
 
-
     @Test
-    public void protocolarPeticaoInicial() throws InterruptedException, AWTException {
-        driver.get(url.get());
-        sleep.actionComponent(driver, "//input[@id='username']", false, "324.547.258-78");
-        sleep.actionComponent(driver, "//input[@id='password']", false, "Megatirador65#");
-        clickSleep3s.apply(driver, "//input[@id='kc-login']");
-
+    public void protocolarPeticaoIntercorrente() throws InterruptedException, AWTException {
+        autenticarUsuario();
         definirProcessosPeticaoIntercorrentes();
         selecionarArquivosPeticao();
         submeterPeticao();

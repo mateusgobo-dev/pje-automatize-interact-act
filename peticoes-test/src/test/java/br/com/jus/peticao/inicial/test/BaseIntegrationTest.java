@@ -1,8 +1,11 @@
 package br.com.jus.peticao.inicial.test;
 
+import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
@@ -14,10 +17,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
+
+import static br.com.jus.peticao.inicial.impl.PeticaoSupplier.urlPortalExterno;
+import static br.com.jus.peticao.inicial.impl.SleepActionImpl.clickSleep3s;
+import static br.com.jus.peticao.inicial.impl.SleepActionImpl.sleep;
 
 public class BaseIntegrationTest {
     protected WebDriver driver;
@@ -26,13 +34,31 @@ public class BaseIntegrationTest {
     protected JavascriptExecutor js;
     protected Path pathProcessosSubmetidos = Path.of(System.getProperty("user.dir")).resolve(Paths.get("src", "test", "resources", "processos_submetidos"));
     protected Path pathDocumentos = Path.of(System.getProperty("user.dir")).resolve(Paths.get("src", "test", "resources", "documentos" ));
-
     protected final AtomicReference<Integer> peticaoIndex = new AtomicReference<>(0);
 
-    protected void autenticarUsuario() {
-        driver.findElement(By.xpath("//input[@id='username']")).sendKeys("324.547.258-78");
-        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Megatirador65#");
-        driver.findElement(By.xpath("//input[@id='kc-login']")).click();
+    protected void configurarChromeDriver(){
+        driver = new ChromeDriver();
+        configPropertiesDriver();
+    }
+
+    protected  void configurarFirefoxDriver(){
+        driver = new FirefoxDriver();
+        configPropertiesDriver();
+    }
+
+    private void configPropertiesDriver(){
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
+        js = (JavascriptExecutor) driver;
+        vars = new HashMap<>();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+    }
+
+    protected void autenticarUsuario() throws InterruptedException {
+        driver.get(urlPortalExterno.get());
+        sleep.actionComponent(driver, "//input[@id='username']", false, "324.547.258-78");
+        sleep.actionComponent(driver, "//input[@id='password']", false, "Megatirador65#");
+        clickSleep3s.apply(driver, "//input[@id='kc-login']");
     }
 
     protected  String executarComandoJavaScript(String comando) {
@@ -69,26 +95,8 @@ public class BaseIntegrationTest {
         System.out.println("New tab URL = " + newUrl + ", original = " + currentTab);
     }
 
-    protected void subirArquivoPeticao(File file) throws AWTException {
-        // Copy path to clipboard
-        StringSelection selection = new StringSelection(file.getAbsolutePath());
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
-
-        // Robot actions
-        Robot robot = new Robot();
-        robot.setAutoDelay(100);
-
-        // CTRL + V
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-
-        // Small pause before ENTER
-        robot.delay(500);
-
-        // ENTER
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
     }
 }

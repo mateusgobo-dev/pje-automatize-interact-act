@@ -1,4 +1,4 @@
-package br.com.just.peticao.inicial.test.factory;
+package br.com.jus.peticao.inicial.test.factory;
 
 public class Peticao {
     private Long id;

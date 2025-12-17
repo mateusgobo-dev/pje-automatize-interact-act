@@ -1,4 +1,4 @@
-package br.com.just.peticao.inicial.test;
+package br.com.jus.peticao.inicial.test;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

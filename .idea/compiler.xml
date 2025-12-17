@@ -13,9 +13,12 @@
         <module name="extract-api-paths" />
         <module name="carta-precatoria-de-ordem-test" />
         <module name="carta-precatoria-declinio-remessa" />
-        <module name="peticao-test" />
+        <module name="peticoes-test" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="peticao-test" target="23" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

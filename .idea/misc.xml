@@ -13,11 +13,17 @@
         <option value="$PROJECT_DIR$/extract-api-paths/pom.xml" />
         <option value="$PROJECT_DIR$/../validacaoProcessosOficio/pom.xml" />
         <option value="$PROJECT_DIR$/validacaoProcessosOficio/pom.xml" />
+        <option value="$PROJECT_DIR$/peticoes-test/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/validacaoProcessosOficio/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="NimProjectFileService" has-nim-files="false" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="23 (2)" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="23" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

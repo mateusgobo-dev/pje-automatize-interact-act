@@ -1,6 +1,6 @@
-package br.com.just.peticao.inicial.test;
+package br.com.jus.peticao.inicial.test;
 
-import br.com.just.peticao.inicial.test.factory.Peticao;
+import br.com.jus.peticao.inicial.test.factory.Peticao;
 import br.com.pje.model.TokenPattern;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -128,7 +128,7 @@ public class PeticaoIntercorrenteTest extends BaseIntegrationTest {
         String currentUrl = (String) js.executeScript("return window.location.href;");
         System.out.println(currentUrl);
 
-        WebElement fileInputPdfA = sleep.actionComponent(driver,"//input[@accept='application/pdf']", false);
+        WebElement fileInputPdfA = sleep.actionComponent(driver, "//input[@accept='application/pdf']", false);
         fileInputPdfA.sendKeys(myFile.apply("_A.pdf").getAbsolutePath());
         threadSleep_2000_ms.get();
         sleep.actionComponent(driver, "mat-select-value-3", true).click();
@@ -137,10 +137,10 @@ public class PeticaoIntercorrenteTest extends BaseIntegrationTest {
         clickSleep3s.apply(driver, "//mat-icon[@class='mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color']");
         sleep.actionComponent(driver, "mat-input-1", true, "PeticaoInicialAutomatizado%s".formatted(peticaoIndex.getAndSet(peticaoIndex.get() + 1)));
 
-        WebElement fileInputAnexo = sleep.actionComponent(driver,"//input[@type='file' and @multiple]", false);
+        WebElement fileInputAnexo = sleep.actionComponent(driver, "//input[@type='file' and @multiple]", false);
         fileInputAnexo.sendKeys(myFile.apply("protocolo").getAbsolutePath());
         threadSleep_2000_ms.get();
-        sleep.actionComponent(driver,"mat-select-value-5",true).click();
+        sleep.actionComponent(driver, "mat-select-value-5", true).click();
         WebElement optionOutrosDocumentos = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Outros documentos (80)']")));
         optionOutrosDocumentos.click();
         clickSleep3s.apply(driver, "(//mat-icon[@role='img'][normalize-space()='close'])[2]");
@@ -176,7 +176,6 @@ public class PeticaoIntercorrenteTest extends BaseIntegrationTest {
         HttpResponse processoResponse = processoClient.send(getProcesso, HttpResponse.BodyHandlers.ofString());
         System.out.println(processoResponse.statusCode());
         System.out.println(processoResponse.body().toString());
-
 //        lerProcessos();
     }
 

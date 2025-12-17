@@ -3,8 +3,11 @@ package br.com.jus.peticao.inicial.impl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -44,7 +47,7 @@ public interface SleepActionImpl {
         if(keys.length > 0){
             webElement.sendKeys(keys);
         }
-        Thread.sleep(1000l);
+        threadSleep_2000_ms.get();
         return webElement;
     };
 
@@ -65,5 +68,19 @@ public interface SleepActionImpl {
         Select select = new Select(driver.findElement(By.xpath(reference)));
         threadSleep_2000_ms.get();
         return select;
+    };
+
+    BiFunction<WebDriver, String, WebElement> optionValue = (driver, reference) -> {
+        WebElement optionPeticao = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(reference)));
+        optionPeticao.click();
+        threadSleep_2000_ms.get();
+        return optionPeticao;
+    };
+
+    BiFunction<WebElement, String, WebElement> dialogWebElementActions = (webElement, reference) -> {
+        WebElement checkboxElement = webElement.findElement(By.xpath(reference));
+        checkboxElement.click();
+        threadSleep_2000_ms.get();
+        return checkboxElement;
     };
 }

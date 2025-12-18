@@ -2,17 +2,14 @@ package br.com.jus.peticao.test;
 
 import br.com.jus.peticao.inicial.PeticaoInicialCaracteristicasTest;
 import br.com.jus.peticao.inicial.PeticaoInicialDadosIniciaisTest;
+import br.com.jus.peticao.inicial.PeticaoInicialPartesTest;
 import org.junit.jupiter.api.AfterEach;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -39,6 +36,7 @@ public class BaseIntegrationTest {
     protected final AtomicReference<Integer> peticaoIndex = new AtomicReference<>(0);
     protected PeticaoInicialDadosIniciaisTest peticaoInicialDadosIniciaisTest;
     protected PeticaoInicialCaracteristicasTest peticaoInicialCaracteristicasTest;
+    protected PeticaoInicialPartesTest peticaoInicialPartesTest;
 
     protected void configurarChromeDriver(){
         driver = new ChromeDriver();

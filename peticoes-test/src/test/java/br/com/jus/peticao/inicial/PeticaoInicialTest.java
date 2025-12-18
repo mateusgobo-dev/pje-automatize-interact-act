@@ -13,6 +13,7 @@ public class PeticaoInicialTest extends BaseIntegrationTest {
         this.configurarChromeDriver();
         this.peticaoInicialDadosIniciaisTest = new PeticaoInicialDadosIniciaisTest(driver);
         this.peticaoInicialCaracteristicasTest = new PeticaoInicialCaracteristicasTest(driver);
+        this.peticaoInicialPartesTest = new PeticaoInicialPartesTest(driver);
     }
 
     @Test
@@ -22,9 +23,8 @@ public class PeticaoInicialTest extends BaseIntegrationTest {
         this.peticaoInicialDadosIniciaisTest.definirDadosIniciaisDestino();
         this.peticaoInicialDadosIniciaisTest.definirClasseJudicial();
         this.peticaoInicialDadosIniciaisTest.definirAssuntos();
-
         this.peticaoInicialCaracteristicasTest.definirCaracteristicasProcesso();
-        this.peticaoInicialCaracteristicasTest.definirPrioridadeProcesso();
+        this.peticaoInicialPartesTest.definirPoloAtivo();
     }
 
     private void definirDadosPeticaoInicial() throws InterruptedException {

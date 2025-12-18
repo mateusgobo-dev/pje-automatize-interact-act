@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/carta-precatoria-de-ordem-test/carta-precatoria-de-ordem-test.iml" filepath="$PROJECT_DIR$/carta-precatoria-de-ordem-test/carta-precatoria-de-ordem-test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/carta-precatoria-declinio-remessa/carta-precatoria-declinio-remessa.iml" filepath="$PROJECT_DIR$/carta-precatoria-declinio-remessa/carta-precatoria-declinio-remessa.iml" />
-      <module fileurl="file://$PROJECT_DIR$/extract-api-paths/extract-api-paths.iml" filepath="$PROJECT_DIR$/extract-api-paths/extract-api-paths.iml" />
-      <module fileurl="file://$PROJECT_DIR$/guia-recolhimento-test/guia-recolhimento-test.iml" filepath="$PROJECT_DIR$/guia-recolhimento-test/guia-recolhimento-test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/peticao-intercorrente-test/peticao-intercorrente-test.iml" filepath="$PROJECT_DIR$/peticao-intercorrente-test/peticao-intercorrente-test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/peticoes-test/peticoes-test.iml" filepath="$PROJECT_DIR$/peticoes-test/peticoes-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/pje-automatize-interact-act.iml" filepath="$PROJECT_DIR$/.idea/pje-automatize-interact-act.iml" />
       <module fileurl="file://$PROJECT_DIR$/selenium-test/selenium-test.iml" filepath="$PROJECT_DIR$/selenium-test/selenium-test.iml" />
     </modules>

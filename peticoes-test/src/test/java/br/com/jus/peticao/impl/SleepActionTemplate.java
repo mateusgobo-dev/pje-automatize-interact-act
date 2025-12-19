@@ -1,4 +1,4 @@
-package br.com.jus.peticao.inicial.impl;
+package br.com.jus.peticao.impl;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,9 +12,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-@FunctionalInterface
-public interface SleepActionImpl {
-
+public interface SleepActionTemplate {
+    WebElement actionComponent(WebDriver driver, String reference, CharSequence...keys) throws InterruptedException;
     Supplier<Void> threadSleep_2000_ms = () -> {
         try {
             Thread.sleep(2000l);
@@ -38,17 +37,6 @@ public interface SleepActionImpl {
             webElement.click();
         }
         return null;
-    };
-
-    WebElement actionComponent(WebDriver driver, String reference, boolean byId, CharSequence...keys) throws InterruptedException;
-
-    SleepActionImpl sleep = (driver, reference, byId,  keys) -> {
-        WebElement webElement =  byId ? driver.findElement(By.id(reference)) : driver.findElement(By.xpath(reference));
-        if(keys.length > 0){
-            webElement.sendKeys(keys);
-        }
-        threadSleep_2000_ms.get();
-        return webElement;
     };
 
     BiFunction<WebDriver, String, Void> click = (driver, reference) -> {

@@ -30,9 +30,10 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import static br.com.jus.peticao.inicial.impl.DeserializeToObject.apply;
-import static br.com.jus.peticao.inicial.impl.SSLContextToRequest.instanceOf;
-import static br.com.jus.peticao.inicial.impl.SleepActionImpl.*;
+import static br.com.jus.peticao.impl.DeserializeToObject.apply;
+import static br.com.jus.peticao.impl.SSLContextToRequest.instanceOf;
+import static br.com.jus.peticao.impl.SleepActionByIdImpl.*;
+import static br.com.jus.peticao.impl.SleepActionByXPathImpl.sleepByXPath;
 
 public class PeticaoIntercorrenteTest extends BaseIntegrationTest {
 
@@ -91,7 +92,7 @@ public class PeticaoIntercorrenteTest extends BaseIntegrationTest {
         clickSleep3s.apply(driver, "(//span[@class='mat-list-item-content'])[6]");
         pularButtonAction.apply(driver);
 
-        sleep.actionComponent(driver, "mat-input-1", true, "0800102-27.2019.8.19.0031");
+        sleepById.actionComponent(driver, "mat-input-1", "0800102-27.2019.8.19.0031");
         clickSleep3s.apply(driver, "//button[@class='mat-focus-indicator ml-3 mat-raised-button mat-button-base mat-primary']");
         threadSleep_ms.apply(3000);
 
@@ -106,23 +107,23 @@ public class PeticaoIntercorrenteTest extends BaseIntegrationTest {
         String currentUrl = (String) js.executeScript("return window.location.href;");
         System.out.println(currentUrl);
 
-        WebElement fileInputPdfA = sleep.actionComponent(driver, "//input[@accept='application/pdf']", false);
+        WebElement fileInputPdfA = sleepByXPath.actionComponent(driver, "//input[@accept='application/pdf']");
         fileInputPdfA.sendKeys(myFile.apply("_A.pdf").getAbsolutePath());
         threadSleep_2000_ms.get();
-        sleep.actionComponent(driver, "mat-select-value-3", true).click();
+        sleepById.actionComponent(driver, "mat-select-value-3").click();
         WebElement optionPeticao = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='mat-option-text'][normalize-space()='Petição (57)']")));
         optionPeticao.click();
         clickSleep3s.apply(driver, "//mat-icon[@class='mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color']");
-        sleep.actionComponent(driver, "mat-input-1", true, "PeticaoInicialAutomatizado%s".formatted(peticaoIndex.getAndSet(peticaoIndex.get() + 1)));
+        sleepById.actionComponent(driver, "mat-input-1", "PeticaoInicialAutomatizado%s".formatted(peticaoIndex.getAndSet(peticaoIndex.get() + 1)));
 
-        WebElement fileInputAnexo = sleep.actionComponent(driver, "//input[@type='file' and @multiple]", false);
+        WebElement fileInputAnexo = sleepByXPath.actionComponent(driver, "//input[@type='file' and @multiple]");
         fileInputAnexo.sendKeys(myFile.apply("protocolo").getAbsolutePath());
         threadSleep_2000_ms.get();
-        sleep.actionComponent(driver, "mat-select-value-5", true).click();
+        sleepById.actionComponent(driver, "mat-select-value-5").click();
         WebElement optionOutrosDocumentos = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Outros documentos (80)']")));
         optionOutrosDocumentos.click();
         clickSleep3s.apply(driver, "(//mat-icon[@role='img'][normalize-space()='close'])[2]");
-        sleep.actionComponent(driver, "mat-input-2", true, "OutrosDocumentos-PeticaoInicialAutomatizado%s".formatted(peticaoIndex.get()));
+        sleepById.actionComponent(driver, "mat-input-2", "OutrosDocumentos-PeticaoInicialAutomatizado%s".formatted(peticaoIndex.get()));
     }
 
     private void submeterPeticao() throws InterruptedException {

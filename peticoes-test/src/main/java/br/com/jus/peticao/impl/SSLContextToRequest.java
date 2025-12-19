@@ -1,4 +1,4 @@
-package br.com.jus.peticao.inicial.impl;
+package br.com.jus.peticao.impl;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;

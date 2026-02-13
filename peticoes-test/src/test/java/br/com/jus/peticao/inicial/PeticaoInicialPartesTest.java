@@ -8,9 +8,9 @@ public record PeticaoInicialPartesTest(WebDriver driver) {
     public void definirPoloAtivo() throws InterruptedException {
         threadSleep_2000_ms.get();
         sleep.actionComponent(driver, "mat-expansion-panel-header-0", true).click();
-        sleep.actionComponent(driver, "//label[@for='mat-radio-11-input']//span[@class='mat-radio-label-content']", false).click();
-        sleep.actionComponent(driver, "//label[@for='mat-radio-26-input']//span[@class='mat-radio-label-content']", false).click();
-        sleep.actionComponent(driver, "", true, "324.547.258-78");//?
+        sleep.actionComponent(driver, "\"(//labe    l[@for='mat-radio-11-input'])\"", false).click();
+        sleep.actionComponent(driver, "//label[@for='mat-radio-32-input']//span[@class='mat-radio-outer-circle']", false).click();
+        sleep.actionComponent(driver, "//input[@id='mat-input-21']", false, "324.547.258-78");
         clickSleep3s.apply(driver, "(//span[@class='mat-button-wrapper'])[9]");
         clickSleep3s.apply(driver, "//span[normalize-space()='Confirmar']");
 

@@ -94,7 +94,7 @@ public class GrerjAutomatizadoTest extends BaseGrerjAutomatizado {
         tableCalculoAliquota.click();
         threadSleep.get();
 
-        tableCalculoAliquota.findElement(By.xpath("(//tbody)[3]")).findElement(By.xpath("(//tr)[12]")).findElement(By.xpath("(//td)[40]")).findElement(By.xpath("(//i[@class='fa fa-calculator fa-fw'])[1]")).click();
+        tableCalculoAliquota.findElement(By.xpath("(//tbody)[3]")).findElement(By.xpath("(//tr)[1]")).findElement(By.xpath("(//td)[7]")).findElement(By.xpath("(//i[@class='fa fa-calculator fa-fw'])[1]")).click();
         threadSleep.get();
         webDriverElements.executeFindElements(this.webDriver, XPATH, "(//button[@type='submit'])[1]", true);
 

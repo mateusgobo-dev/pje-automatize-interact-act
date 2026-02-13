@@ -1,0 +1,100 @@
+/*
+ IBPM - Ferramenta de produtividade Java
+ Copyright (c) 1986-2009 Infox Tecnologia da Informação Ltda.
+
+ Este programa é software livre; você pode redistribuí-lo e/ou modificá-lo 
+ sob os termos da GNU GENERAL PUBLIC LICENSE (GPL) conforme publicada pela 
+ Free Software Foundation; versão 2 da Licença.
+ Este programa é distribuído na expectativa de que seja útil, porém, SEM 
+ NENHUMA GARANTIA; nem mesmo a garantia implícita de COMERCIABILIDADE OU 
+ ADEQUAÇÃO A UMA FINALIDADE ESPECÍFICA.
+ 
+ Consulte a GNU GPL para mais detalhes.
+ Você deve ter recebido uma cópia da GNU GPL junto com este programa; se não, 
+ veja em http://www.gnu.org/licenses/   
+ */
+package br.com.infox.ibpm.home;
+
+import java.util.List;
+
+import org.jboss.seam.Component;
+
+import br.com.itx.component.AbstractHome;
+import br.com.itx.component.grid.GridQuery;
+import br.jus.pje.nucleo.entidades.Endereco;
+import br.jus.pje.nucleo.entidades.Localizacao;
+
+public abstract class AbstractEnderecoHome<T> extends AbstractHome<Endereco> {
+
+	private static final long serialVersionUID = 1L;
+
+	public void setEnderecoIdEndereco(Integer id) {
+		setId(id);
+	}
+
+	public Integer getEnderecoIdEndereco() {
+		return (Integer) getId();
+	}
+
+	@Override
+	protected Endereco createInstance() {
+		Endereco endereco = new Endereco();
+		UsuarioHome usuarioHome = (UsuarioHome) Component.getInstance("usuarioHome", false);
+		if (usuarioHome != null) {
+			endereco.setUsuario(usuarioHome.getDefinedInstance());
+		}
+		CepHome cepHome = (CepHome) Component.getInstance("cepHome", false);
+		if (cepHome != null) {
+			endereco.setCep(cepHome.getDefinedInstance());
+		}
+		return endereco;
+	}
+
+	@Override
+	public String remove() {
+		UsuarioHome usuario = (UsuarioHome) Component.getInstance("usuarioHome", false);
+		if (usuario != null) {
+			usuario.getInstance().getEnderecoList().remove(instance);
+		}
+		return super.remove();
+	}
+
+	@Override
+	public String remove(Endereco obj) {
+		setInstance(obj);
+		String ret = super.remove();
+		newInstance();
+		refreshGrid("enderecoGrid");
+		refreshObjetosSelecionados(obj);
+		return ret;
+	}
+	
+	/**
+	 * @author Everton Nogueira
+	 * @param Endereço que foi removido
+	 * @Description Remove o endereço da grid caso o endereço excluído for o endereço que estava selecionado.
+	 */
+	private void refreshObjetosSelecionados(Endereco obj) {
+		GridQuery gridQuery = getComponent("processoParteVinculoPessoaEnderecoGrid");
+		if(gridQuery != null){
+			gridQuery.refresh();
+			if(gridQuery.getSelectedRow() != null && gridQuery.getSelectedRow().equals(obj)){
+				gridQuery.setSelectedRow(null);
+			}
+		}
+	}
+
+	@Override
+	public String persist() {
+		String action = super.persist();
+		if (action != null) {
+			newInstance();
+		}
+		return action;
+	}
+
+	public List<Localizacao> getLocalizacaoList() {
+		return getInstance() == null ? null : getInstance().getLocalizacaoList();
+	}
+
+}

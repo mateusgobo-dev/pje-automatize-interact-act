@@ -1,0 +1,90 @@
+package br.com.infox.ibpm.component.tree;
+
+import java.util.List;
+import javax.persistence.Query;
+import br.com.infox.component.tree.EntityNode;
+import br.jus.pje.nucleo.entidades.Localizacao;
+
+public class LocalizacaoNodeSearch extends EntityNode<Localizacao>{
+	private static final long serialVersionUID = 1L;
+	private boolean showEstrutura;
+	private boolean exibirModeloLocalizacao = true;
+	
+	public LocalizacaoNodeSearch(String queryChildren){
+		super(queryChildren);
+	}
+
+	public LocalizacaoNodeSearch(LocalizacaoNodeSearch localizacaoNodeSearch,
+			Localizacao n, String[] queryChildren){
+		super(localizacaoNodeSearch, n, queryChildren);
+	}
+
+	public LocalizacaoNodeSearch(String[] queryChildrenList){
+		super(queryChildrenList);
+	}
+
+	@Override
+	protected List<Localizacao> getChildrenList(String query, Localizacao localizacao){
+		List<Localizacao> list = null;
+		Localizacao estruturaFilho = localizacao == null ? null : localizacao.getEstruturaFilho();
+		
+		if (exibirModeloLocalizacao) {
+			if (showEstrutura) {
+				list = super.getChildrenList(query, localizacao);
+				
+				if (estruturaFilho != null){
+					list.add(estruturaFilho);
+				}
+			} else{			
+				list = super.getChildrenList(query, estruturaFilho != null ? estruturaFilho : localizacao);
+			}
+		} else {
+			list = super.getChildrenList(query, localizacao);
+		}
+		
+		return list;
+	}
+
+	@Override
+	protected EntityNode<Localizacao> createChildNode(Localizacao n){
+		LocalizacaoNodeSearch node = new LocalizacaoNodeSearch(this, n, getQueryChildren());
+		node.setShowEstrutura(getShowEstrutura());
+		node.setExibirModeloLocalizacao(isExibirModeloLocalizacao());
+		return node;
+	}
+
+	@Override
+	protected EntityNode<Localizacao> createRootNode(Localizacao n){
+		LocalizacaoNodeSearch node = new LocalizacaoNodeSearch(null, n, getQueryChildren());
+		node.setShowEstrutura(getShowEstrutura());
+		node.setExibirModeloLocalizacao(isExibirModeloLocalizacao());
+		return node;
+	}
+
+	@Override
+	public List<EntityNode<Localizacao>> getRoots(Query queryRoots){
+		List<EntityNode<Localizacao>> roots = super.getRoots(queryRoots);
+		for (EntityNode<Localizacao> entityNode : roots){
+			LocalizacaoNodeSearch localizacaoNode = (LocalizacaoNodeSearch) entityNode;
+			localizacaoNode.setShowEstrutura(showEstrutura);
+			localizacaoNode.setExibirModeloLocalizacao(isExibirModeloLocalizacao());
+		}
+		return roots;
+	}
+	
+	public void setShowEstrutura(boolean showEstrutura){
+		this.showEstrutura = showEstrutura;
+	}
+
+	public boolean getShowEstrutura(){
+		return showEstrutura;
+	}
+
+	public boolean isExibirModeloLocalizacao() {
+		return exibirModeloLocalizacao;
+	}
+	
+	public void setExibirModeloLocalizacao(boolean exibirModeloLocalizacao) {
+		this.exibirModeloLocalizacao = exibirModeloLocalizacao;
+	}
+}

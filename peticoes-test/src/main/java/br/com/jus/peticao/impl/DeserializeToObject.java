@@ -1,4 +1,4 @@
-package br.com.jus.peticao.inicial.impl;
+package br.com.jus.peticao.impl;
 
 import br.com.pje.model.TokenPattern;
 import com.fasterxml.jackson.core.JsonParser;

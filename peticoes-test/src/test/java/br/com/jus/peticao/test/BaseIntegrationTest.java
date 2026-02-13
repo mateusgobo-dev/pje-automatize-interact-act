@@ -22,9 +22,9 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
-import static br.com.jus.peticao.inicial.impl.PeticaoSupplier.urlPortalExterno;
-import static br.com.jus.peticao.inicial.impl.SleepActionImpl.clickSleep3s;
-import static br.com.jus.peticao.inicial.impl.SleepActionImpl.sleep;
+import static br.com.jus.peticao.impl.PeticaoSupplier.urlPortalExterno;
+import static br.com.jus.peticao.impl.SleepActionByXPathImpl.clickSleep3s;
+import static br.com.jus.peticao.impl.SleepActionByXPathImpl.sleepByXPath;
 
 public class BaseIntegrationTest {
     protected WebDriver driver;
@@ -58,8 +58,8 @@ public class BaseIntegrationTest {
 
     protected void autenticarUsuario() throws InterruptedException {
         driver.get(urlPortalExterno.get());
-        sleep.actionComponent(driver, "//input[@id='username']", false, "324.547.258-78");
-        sleep.actionComponent(driver, "//input[@id='password']", false, "Megatirador65#");
+        sleepByXPath.actionComponent(driver, "//input[@id='username']",  "324.547.258-78");
+        sleepByXPath.actionComponent(driver, "//input[@id='password']", "Megatirador65#");
         clickSleep3s.apply(driver, "//input[@id='kc-login']");
     }
 

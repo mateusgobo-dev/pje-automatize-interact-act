@@ -4,7 +4,8 @@ import br.com.jus.peticao.test.BaseIntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static br.com.jus.peticao.inicial.impl.SleepActionImpl.*;
+import static br.com.jus.peticao.impl.SleepActionByIdImpl.sleepById;
+import static br.com.jus.peticao.impl.SleepActionByXPathImpl.*;
 
 public class PeticaoInicialTest extends BaseIntegrationTest {
 
@@ -30,7 +31,7 @@ public class PeticaoInicialTest extends BaseIntegrationTest {
     private void definirDadosPeticaoInicial() throws InterruptedException {
         threadSleep_2000_ms.get();
         pularButtonAction.apply(driver);
-        sleep.actionComponent(driver, "menu-principal", true).click();
+        sleepById.actionComponent(driver, "menu-principal").click();
         threadSleep_2000_ms.get();
         clickSleep3s.apply(driver,"(//span[@class='mat-list-item-content'])[5]");
     }

@@ -1,4 +1,4 @@
-package br.com.jus.peticao.inicial.impl;
+package br.com.jus.peticao.impl;
 
 import java.util.function.Supplier;
 

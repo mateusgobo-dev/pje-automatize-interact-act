@@ -11,20 +11,12 @@
         <module name="selenium-test" />
         <module name="extract-api-paths" />
         <module name="guia-recolhimento-test" />
+        <module name="pje-add-parte-test-automoatize" />
         <module name="carta-precatoria-de-ordem-test" />
         <module name="carta-precatoria-declinio-remessa" />
         <module name="peticoes-test" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="carta-precatoria-de-ordem-test" target="19" />
-      <module name="carta-precatoria-declinio-remessa" target="19" />
-      <module name="extract-api-paths" target="19" />
-      <module name="guia-recolhimento-test" target="19" />
-      <module name="peticao-intercorrente-test" target="19" />
-      <module name="peticoes-test" target="19" />
-      <module name="selenium-test" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

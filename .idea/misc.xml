@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -7,11 +8,16 @@
         <option value="$PROJECT_DIR$/selenium-test/pom.xml" />
         <option value="$PROJECT_DIR$/extract-api-paths/pom.xml" />
         <option value="$PROJECT_DIR$/guia-recolhimento-test/pom.xml" />
+        <option value="$PROJECT_DIR$/pje-add-parte-test-automoatize/pom.xml" />
         <option value="$PROJECT_DIR$/peticao-intercorrente-test/pom.xml" />
         <option value="$PROJECT_DIR$/carta-precatoria-de-ordem-test/pom.xml" />
         <option value="$PROJECT_DIR$/carta-precatoria-declinio-remessa/pom.xml" />
       </list>
     </option>
+  </component>
+  <component name="NimProjectFileService" has-nim-files="false" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="21 (2)" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="20" project-jdk-type="JavaSDK" />
 </project>

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.logging.Level;
@@ -25,13 +26,22 @@ public class PjeAutomatizeTest {
         return null;
     };
 
-    protected Function<ChromeDriver,WebDriverWait> wait = (driver) -> new WebDriverWait(driver, Duration.ofSeconds(10));
     protected Function<Long,Void> sleepTimerInSeconds = (timeout) -> {
         try {
             Thread.sleep(Duration.ofSeconds(timeout));
         }catch (InterruptedException e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
+        return null;
+    };
+    protected BiFunction<ChromeDriver, String, Void> clickWait = (driver, locator) -> {
+        driver.findElement(By.xpath(locator)).click();
+        sleepTimerInSeconds.apply(5l);
+        return null;
+    };
+    protected BiFunction<ChromeDriver, String, Void> clickTabWait = (driver, locator) -> {
+        driver.findElement(By.xpath(locator)).click();
+        sleepTimerInSeconds.apply(4l);
         return null;
     };
 
@@ -48,34 +58,30 @@ public class PjeAutomatizeTest {
     protected void autenticarPje(ChromeDriver driver) throws Exception {
         driver.findElement(By.xpath("//input[@id='username']")).sendKeys("32454725878");
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("admin123");
-        wait.apply(driver).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='btnEntrar']"))).click();
-        driver.findElement(By.xpath("//a[normalize-space()='Prosseguir sem o Token']")).click();
+        clickWait.apply(driver,"//input[@id='btnEntrar']");
+        clickWait.apply(driver,"//a[normalize-space()='Prosseguir sem o Token']");
         sleepTimerInSeconds.apply(3l);
     }
 
     protected void pesquisarProcesso(ChromeDriver driver) throws Exception {
-        driver.findElement(By.xpath("//span[normalize-space()='Abrir menu']")).click();
-        driver.findElement(By.xpath("(//a[@href='#'][normalize-space()='Processo'])[1]")).click();
-        driver.findElement(By.xpath("//a[contains(text(),'Pesquisar')]")).click();
-        driver.findElement(By.xpath("(//a[contains(text(),'Processo')])[2]")).click();
+        clickWait.apply(driver,"//span[normalize-space()='Abrir menu']");
+        clickWait.apply(driver,"(//a[@href='#'][normalize-space()='Processo'])[1]");
+        clickWait.apply(driver,"//a[contains(text(),'Pesquisar')]");
+        clickWait.apply(driver,"(//a[contains(text(),'Processo')])[2]");
         driver.findElement(By.xpath("//input[@id='fPP:numeroProcesso:numeroSequencial']")).sendKeys("0800001");
         driver.findElement(By.xpath("//input[@id='fPP:numeroProcesso:numeroDigitoVerificador']")).sendKeys("12");
         driver.findElement(By.xpath("//input[@id='fPP:numeroProcesso:Ano']")).sendKeys("2026");
         driver.findElement(By.xpath("//input[@id='fPP:numeroProcesso:NumeroOrgaoJustica']")).sendKeys("0203");
-        wait.apply(driver).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='fPP:searchProcessos']"))).click();
-
-        sleepTimerTwoSeconds.get();
+        clickWait.apply(driver,"//input[@id='fPP:searchProcessos']");
         driver.findElement(By.xpath("(//a[normalize-space()='0800001-12.2026.8.19.0203'])[1]")).click();
-        sleepTimerTwoSeconds.get();
     }
 
     protected ChromeDriver  autosDigitaisRetificarAutuacao(ChromeDriver driver) throws Exception {
         //Switch tab
-        WebDriver changeTab = driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
-        WebElement element = changeTab.findElement(By.xpath("//i[@class='fa fa-pencil-square-o']"));
-        element.click();
+        sleepTimerInSeconds.apply(8l);
 
-        sleepTimerInSeconds.apply(3l);
+        WebDriver changeTab = driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
+        clickTabWait.apply((ChromeDriver) changeTab,"//i[@class='fa fa-pencil-square-o']");
         return driver;
     }
 }

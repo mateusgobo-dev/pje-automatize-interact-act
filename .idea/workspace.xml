@@ -5,16 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73fd1b18-1065-495f-818a-12aad40f5e6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/guia-recolhimento-test/target/classes/br/com/guia/recolhimento/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/guia-recolhimento-test/target/test-classes/grerjs.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/guia-recolhimento-test\src\test\resources\test-resources-1755183886507.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pje-add-parte-test-automoatize/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pje-add-parte-test-automoatize/src/test/java/br/com/pje/automatize/PjeAutomatizeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pje-add-parte-test-automoatize/src/test/java/br/com/pje/automatize/partes/PjeAddAutomatizeParts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guia-recolhimento-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/guia-recolhimento-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carta-precatoria-de-ordem-test/carta-precatoria-de-ordem-test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/carta-precatoria-declinio-remessa/carta-precatoria-declinio-remessa.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extract-api-paths/extract-api-paths.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guia-recolhimento-test/guia-recolhimento-test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/peticao-intercorrente-test/peticao-intercorrente-test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/peticoes-test/peticoes-test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pje-add-parte-test-automoatize/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pje-add-parte-test-automoatize/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pje-add-parte-test-automoatize/src/test/java/br/com/pje/automatize/PjeAutomatizeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/pje-add-parte-test-automoatize/src/test/java/br/com/pje/automatize/PjeAutomatizeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pje-add-parte-test-automoatize/src/test/java/br/com/pje/automatize/partes/PjeAddAutomatizeParts.java" beforeDir="false" afterPath="$PROJECT_DIR$/pje-add-parte-test-automoatize/src/test/java/br/com/pje/automatize/partes/PjeAddAutomatizeParts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/selenium-test/selenium-test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/selenium-test/selenium-test.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +29,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="372bUfK0kak9Nt4w2AANTesSPaz" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -34,11 +40,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.PjeAddAutomatizeParts.adicionarPartesProcesso.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Rebasing main",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/mateu/git-repo/pje-automatize-interact-act",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -49,7 +58,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.GrerjAutomatizadoTest.automatizarGeracaoGuiaInicial">
+  <component name="RunManager" selected="JUnit.PjeAddAutomatizeParts.adicionarPartesProcesso">
     <configuration name="GrerjAutomatizadoTest.automatizarGeracaoGuiaInicial" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="guia-recolhimento-test" />
       <extension name="coverage">
@@ -85,6 +94,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PjeAddAutomatizeParts.adicionarPartesProcesso" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pje-add-parte-test-automoatize" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.pje.automatize.partes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.pje.automatize.partes" />
+      <option name="MAIN_CLASS_NAME" value="br.com.pje.automatize.partes.PjeAddAutomatizeParts" />
+      <option name="METHOD_NAME" value="adicionarPartesProcesso" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SeleniumTestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="selenium-test" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="br.pje.automatize.seleniumtest.SeleniumTestApplication" />
@@ -93,16 +118,26 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.PjeAddAutomatizeParts.adicionarPartesProcesso" />
       <item itemvalue="JUnit.GrerjAutomatizadoTest.automatizarGeracaoGuiaInicial" />
       <item itemvalue="JUnit.PeticaoInicialTest.peticaoInicialTest" />
       <item itemvalue="Spring Boot.SeleniumTestApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PjeAddAutomatizeParts.adicionarPartesProcesso" />
         <item itemvalue="JUnit.GrerjAutomatizadoTest.automatizarGeracaoGuiaInicial" />
         <item itemvalue="JUnit.PeticaoInicialTest.peticaoInicialTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -114,6 +149,8 @@
       <updated>1766104129062</updated>
       <workItem from="1766104130153" duration="2610000" />
       <workItem from="1770988022787" duration="3579000" />
+      <workItem from="1773167135769" duration="639000" />
+      <workItem from="1773167782555" duration="18823000" />
     </task>
     <servers />
   </component>

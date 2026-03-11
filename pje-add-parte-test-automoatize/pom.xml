@@ -5,7 +5,7 @@
     <groupId>br.com.pje.automoatize.tests</groupId>
     <artifactId>pje-add-parte-test-automoatize</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>maven-plugin</packaging>
+    <packaging>jar</packaging>
 
     <name>pje-add-parte-test-automoatize</name>
 
@@ -20,7 +20,7 @@
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v137 -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-devtools-v135</artifactId>
+            <artifactId>selenium-devtools-v137</artifactId>
             <version>4.33.0</version>
         </dependency>
 
@@ -43,6 +43,7 @@
             <artifactId>selenium-chrome-driver</artifactId>
             <version>4.33.0</version>
         </dependency>
+
         <!-- Hamcrest (for matchers like `is`, `not`, etc.) -->
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -52,15 +53,30 @@
         </dependency>
 
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.11.4</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
             <version>4.33.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

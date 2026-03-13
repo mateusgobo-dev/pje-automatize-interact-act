@@ -7,6 +7,11 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="azuredevops-tjrj-jus-br-tjerj-componentes_pje" />
+      <option name="name" value="azuredevops-tjrj-jus-br-tjerj-componentes_pje" />
+      <option name="url" value="https://pkgs.dev.azure.com/pjerj/_packaging/Componentes_PJe/maven/v1" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="jboss-public-repository" />
       <option name="name" value="JBoss Public" />
       <option name="url" value="https://repository.jboss.org/nexus/content/groups/public-jboss/" />
@@ -20,6 +25,16 @@
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="nexus-cnj" />
+      <option name="name" value="nexus-cnj" />
+      <option name="url" value="https://nexus.cnj.jus.br/repository/maven-public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven-central" />
+      <option name="name" value="maven-central-dependencies" />
+      <option name="url" value="https://repo1.maven.org/maven2/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central-libs" />
